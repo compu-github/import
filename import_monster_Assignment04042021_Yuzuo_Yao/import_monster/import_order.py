@@ -8,7 +8,6 @@ from types import ModuleType
 from typing import List, Optional, Union
 
 import scipy
-from black import CONSTANT
 
 
 def methods_importer(method_name: str, modules: List[Union[str, ModuleType]]) -> List[object]:
