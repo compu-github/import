@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 # dynamic_import_2.py
-import builtins
 import importlib
-import math
-import sys
 from types import ModuleType
-from typing import List, Optional, Union
-
-import scipy
+from typing import List, Union
 
 
 def methods_importer(method_name: str, modules: List[Union[str, ModuleType]]) -> List[object]:
@@ -19,7 +14,7 @@ def methods_importer(method_name: str, modules: List[Union[str, ModuleType]]) ->
             elif isinstance(module, str):
                 mod = importlib.import_module(module)
             else:
-                raise TypeError("Must be list of strings or ModuleType")
+                raise TypeError("Must be list of strings or ModuleType.")
 
             met = getattr(mod, method_name, None)
 
