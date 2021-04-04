@@ -10,10 +10,8 @@ from typing import List, Optional, Union
 import scipy
 from black import CONSTANT
 
-print(CONSTANT)
 
-
-def search_import(method: str, modules: List[Union[str, ModuleType]]) -> Optional[object]:
+def methods_importer(method_name: str, modules: List[Union[str, ModuleType]]) -> List[object]:
     for module in modules:
         try:
 
@@ -24,7 +22,7 @@ def search_import(method: str, modules: List[Union[str, ModuleType]]) -> Optiona
             else:
                 raise TypeError("Must be list of strings or ModuleType")
 
-            met = getattr(mod, method, None)
+            met = getattr(mod, method_name, None)
 
             if met:
                 return met
@@ -33,22 +31,3 @@ def search_import(method: str, modules: List[Union[str, ModuleType]]) -> Optiona
             continue
 
     return None
-
-
-print(search_import("__import__", ["builtins"]))
-# <built-in function __import__>
-
-print(search_import("nothing", ["builtins"]))
-# None
-
-
-print(search_import("sum", [math, builtins, scipy]))
-# <built-in function sum>
-
-
-print(sys.meta_path)
-# [
-#   <class '_frozen_importlib.BuiltinImporter'>,
-#   <class '_frozen_importlib.FrozenImporter'>,
-#   <class '_frozen_importlib_external.PathFinder'>
-# ]
